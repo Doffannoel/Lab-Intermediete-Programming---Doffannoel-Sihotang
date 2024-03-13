@@ -1,0 +1,44 @@
+kata_rahasia = "Kresna Jujur"
+kata_ditebak = []
+nyawa = 6
+
+while nyawa > 0:
+    display = ""
+    for letter in kata_rahasia:
+        if letter.lower() in kata_ditebak or letter == " ":
+            display += letter
+        else:
+            display += "-"
+
+    print(display)
+
+    if "-" not in display:
+        print("Selamat kamu telah benar menebak kata rahasia:", kata_rahasia)
+        break
+
+    tebak = input("Masukkan sebuah huruf: ")
+
+    if len(tebak) != 1:
+        print("Masukkan hanya satu huruf!")
+    elif not tebak.isalpha():
+        print("Masukkan hanya huruf!")
+    elif tebak in kata_ditebak:
+        print("Kamu sudah memasukkan huruf itu")
+    else:
+        kata_ditebak.append(tebak.lower())
+        if tebak.lower() in kata_rahasia.lower():
+            print("Selamat, kamu telah menebak sebuah huruf!")
+        else:
+            nyawa -= 1
+            print(f"Tebakan kamu salah, nyawa kamu sisa {nyawa}")
+
+if nyawa == 0:
+    print("Nyawa kamu habis, kata rahasianya adalah", kata_rahasia)
+
+main_lagi = input("Apakah kamu ingin bermain lagi? (y/n): ")
+if main_lagi.lower() == "y":
+    tebak = input("Masukkan sebuah huruf: ")
+    kata_ditebak = []
+    nyawa = 6
+else:
+    print("Game Over")
